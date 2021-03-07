@@ -17,6 +17,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content "User was successfully created."
         end
       end
+      
       context 'メールアドレスが未入力' do
         it 'ユーザーの新規作成が失敗する' do
           visit sign_up_path
@@ -29,6 +30,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content "Email can't be blank"
         end
       end
+
       context '登録済のメールアドレスを使用' do
         it 'ユーザーの新規作成が失敗する' do
           visit sign_up_path
@@ -56,6 +58,7 @@ RSpec.describe "Users", type: :system do
 
   describe 'ログイン後' do
     before { login(user) }
+
     describe 'ユーザー編集' do
       context 'フォームの入力値が正常' do
         it 'ユーザーの編集が成功する' do
@@ -68,6 +71,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content "User was successfully updated."
         end
       end
+
       context 'メールアドレスが未入力' do
         it 'ユーザーの編集が失敗する' do
           visit edit_user_path(user)
@@ -80,6 +84,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content "Email can't be blank"
         end
       end
+
       context '登録済のメールアドレスを使用' do
         it 'ユーザーの編集が失敗する' do
           visit edit_user_path(user)
@@ -92,6 +97,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content "Email has already been taken"
         end
       end
+
       context '他ユーザーの編集ページにアクセス' do
         it '編集ページへのアクセスが失敗する' do
           visit edit_user_path(other_user)
